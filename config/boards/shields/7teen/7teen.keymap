@@ -1,0 +1,49 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+#define L_DEF 0
+#define L_NAV 1
+#define L_ADJ 2
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+    &kp ASTRK &kp KP_N7 &kp KP_N8 &kp KP_N9
+    &kp SLASH &kp KP_N4 &kp KP_N5 &kp KP_N6
+    &kp PLUS  &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp K_MUTE
+    &kp MINUS &kp DOT   &kp KP_N0 &lt L_NAV ENTER
+            >;
+
+sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+
+        nav_layer {
+            label = "Nav";
+            bindings = <
+    &kp ESC  &trans     &kp K_VOL_UP &trans
+    &kp TAB  &kp K_PREV &kp K_PP     &kp K_NEXT
+    &trans   &trans     &kp K_VOL_DN &trans
+    &kp BSPC &mo L_ADJ  &trans       &trans
+            >;
+        };
+
+        adj_layer {
+            label = "Adj";
+            bindings = <
+    &trans   &trans    &trans    &trans    
+    &trans   &trans    &reset    &trans    
+    &trans   &trans    &trans    &trans    
+    &trans   &trans    &trans    &trans    
+            >;
+        };
+    };
+};

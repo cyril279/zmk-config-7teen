@@ -33,19 +33,19 @@ jobs:
         run: west update
       - name: West Zephyr export
         run: west zephyr-export
-      - name: West Build (Hummingbird)
-        run: west build -s zmk/app -b seeeduino_xiao -- -DSHIELD=hummingbird -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
+      - name: West Build (7teen)
+        run: west build -s zmk/app -b seeeduino_xiao -- -DSHIELD=7teen -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
       - name: UF2 Build
         run: python3 ./tools/uf2/utils/uf2conv.py -c -f SAMD21 -o build/zephyr/zmk.uf2 build/zephyr/zmk.bin
-      - name: Hummingbird DTS File
+      - name: 7teen DTS File
         if: ${{ always() }}
         run: cat -n build/zephyr/seeeduino_xiao.dts.pre.tmp
-      - name: Hummingbird Kconfig file
+      - name: 7teen Kconfig file
         run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
       - name: Rename zmk.uf2
-        run: cp build/zephyr/zmk.uf2 hummingbird.uf2
-      - name: Archive (Hummingbird)
+        run: cp build/zephyr/zmk.uf2 7teen.uf2
+      - name: Archive (7teen)
         uses: actions/upload-artifact@v2
         with:
           name: firmware
-          path: hummingbird.uf2
+          path: 7teen.uf2
