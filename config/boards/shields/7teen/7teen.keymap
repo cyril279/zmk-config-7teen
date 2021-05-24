@@ -23,7 +23,7 @@
     &kp MINUS &kp DOT   &kp KP_N0 &lt L_NAV ENTER
             >;
 
-sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+//sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         nav_layer {

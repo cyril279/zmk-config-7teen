@@ -47,7 +47,7 @@
             , <&portb 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             ;
     };
-    
+/*
     left_encoder: encoder_left {
         compatible = "alps,ec11";
         label = "LEFT_ENCODER";
@@ -60,8 +60,9 @@
         compatible = "zmk,keymap-sensors";
         sensors = <&left_encoder>;
     };
+ */
 };
 
-&left_encoder { status = "okay"; };
+// &left_encoder { status = "okay"; };
 &sercom0 { status = "disabled"; };
 &sercom4 { status = "disabled"; };
