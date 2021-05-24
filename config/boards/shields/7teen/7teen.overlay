@@ -16,7 +16,7 @@
 
     default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
-        columnsr= <5>;
+        columns= <5>;
         rows = <4>;
         map = <
     RC(0,0) RC(0,1) RC(0,2) RC(0,3)
@@ -48,9 +48,7 @@
             ;
     };
     
-};
-
-left_encoder: encoder_left {
+    left_encoder: encoder_left {
         compatible = "alps,ec11";
         label = "LEFT_ENCODER";
         a-gpios = <&porta 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
@@ -58,10 +56,11 @@ left_encoder: encoder_left {
         resolution = <4>;
     };
 
-sensors {
+    sensors {
         compatible = "zmk,keymap-sensors";
         sensors = <&left_encoder>;
     };
+};
 
 &left_encoder { status = "okay"; };
 &sercom0 { status = "disabled"; };
