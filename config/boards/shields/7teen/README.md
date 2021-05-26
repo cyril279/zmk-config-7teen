@@ -14,11 +14,14 @@ Encoder works amazingly until keypresses, then then it is some-timey.
 result: Encoder does not seem to respond at all, & no key-presses until encoder actuation.  
 This defies exepctation. I am not sure exactly what the real conflict is.
 
-**Encoder on pins a8 & a11**  
-untested
+**Encoder on pins a10 & a11 (and a2 & a4)** -these are all analog pins  
+result: No keypresses until encoder actuation.
+Encoder works well before AND after key-presses.
 
 **Encoder as part of the key-matrix**  
-untested
+Maybe I did it wrong, but electrically, I don't see how this should work, and it didn't.
+I tried the version where the A & B pins are assigned to row and column respectively, leaving C attached to ground.
+This DOES seem to be another case of the keypresses don't work until I actuate the (non-working) encoder.
 
 **Force matrix scan:**  
 add lines to Kconfig.defconfig to force polling the matrix for key-presses  
