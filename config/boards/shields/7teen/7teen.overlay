@@ -51,8 +51,8 @@
     left_encoder: encoder_left {
         compatible = "alps,ec11";
         label = "LEFT_ENCODER";
-        a-gpios = <&porta 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        b-gpios = <&portb 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        a-gpios = <&porta 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+        b-gpios = <&portb 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
         resolution = <4>;
     };
 
@@ -63,5 +63,6 @@
 };
 
 &left_encoder { status = "okay"; };
-&sercom0 { status = "disabled"; };
-&sercom4 { status = "disabled"; };
+&sercom2 { status = "disabled"; }; // 4..5 - I2C
+&sercom4 { status = "disabled"; }; // 6..7 - UART
+&sercom0 { status = "disabled"; }; // 8..10 - SPI
