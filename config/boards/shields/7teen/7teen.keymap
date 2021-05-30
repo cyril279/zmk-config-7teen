@@ -23,17 +23,18 @@
     &kp MINUS &kp DOT   &kp KP_N0 &lt L_NAV ENTER
             >;
 
-sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+sensor-bindings = <&inc_dec_kp UP DOWN>;
         };
 
         nav_layer {
             label = "Nav";
             bindings = <
-    &kp ESC  &trans     &kp K_VOL_UP &trans
+    &kp ESC  &trans     &kp K_VOL_UP &kp BSPC
     &kp TAB  &kp K_PREV &kp K_PP     &kp K_NEXT
     &trans   &trans     &kp K_VOL_DN &trans &trans
-    &kp BSPC &mo L_ADJ  &trans       &trans
+    &trans   &mo L_ADJ  &trans       &trans
             >;
+sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         adj_layer {
