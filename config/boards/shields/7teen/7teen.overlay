@@ -63,5 +63,6 @@
 };
 
 &left_encoder { status = "okay"; };
-&sercom0 { status = "disabled"; };
-&sercom4 { status = "disabled"; };
+&sercom2 { status = "disabled"; }; // 4..5 - I2C
+&sercom4 { status = "disabled"; }; // 6..7 - UART
+&sercom0 { status = "disabled"; }; // 8..10 - SPI
