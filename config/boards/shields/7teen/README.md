@@ -1,6 +1,10 @@
 ## Troubleshooting poor encoder/keypress behavior
 ```
 west build -p -b seeeduino_xiao -- -DSHIELD=7teen -DZMK_CONFIG='/home/cyril/workshop/zmk-config-7teen/config'
+
+cmake --build /home/cyril/workbench/github/zmk/app/build --target clean
+# or first:
+rm build/CMakeCache.txt
 ```
 
 **Issue(s):**  
