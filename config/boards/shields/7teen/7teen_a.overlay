@@ -1,0 +1,68 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <dt-bindings/zmk/matrix_transform.h>
+
+/ {
+    chosen {
+        zmk,kscan = &kscan0;
+        zmk,matrix_transform = &leftSide_transform;
+	/delete-property/ zephyr,console;
+	/delete-property/ zephyr,shell-uart;
+    };
+
+    leftSide_transform: keymap_transform_2 {
+        compatible = "zmk,matrix-transform";
+        columns= <4>;
+        rows = <5>;
+        map = <
+                    RC(0,2)
+    RC(1,0) RC(1,1) RC(1,2) RC(1,3)
+    RC(2,0) RC(2,1) RC(2,2) RC(2,3)
+    RC(3,0) RC(3,1) RC(3,2) RC(3,3)
+    RC(4,0) RC(4,1) RC(4,2) RC(4,3)
+            >;
+    };
+
+    kscan0: kscan_0 {
+        compatible = "zmk,kscan-gpio-matrix";
+        label = "KSCAN";
+        diode-direction = "row2col";
+
+        col-gpios
+            = <&porta 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&porta 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&porta 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&portb 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            ;
+
+        row-gpios
+            = <&porta 2  GPIO_ACTIVE_HIGH>
+            , <&porta 4  GPIO_ACTIVE_HIGH>
+            , <&porta 10 GPIO_ACTIVE_HIGH>
+            , <&porta 11 GPIO_ACTIVE_HIGH>
+            , <&porta 8  GPIO_ACTIVE_HIGH>
+            ;
+    };
+
+    left_encoder: encoder_left {
+        compatible = "alps,ec11";
+        label = "LEFT_ENCODER";
+        a-gpios = <&porta 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+        b-gpios = <&portb 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+        resolution = <2>;
+    };
+
+    sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&left_encoder>;
+    };
+};
+
+&left_encoder { status = "okay"; };
+&sercom2 { status = "disabled"; }; // 4..5 - I2C
+&sercom4 { status = "disabled"; }; // 6..7 - UART
+&sercom0 { status = "disabled"; }; // 8..10 - SPI

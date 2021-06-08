@@ -1,5 +1,8 @@
 # Copyright (c) 2020 The ZMK Contributors
 # SPDX-License-Identifier: MIT
 
-config SHIELD_7TEEN
-   def_bool $(shields_list_contains,7teen)
+config SHIELD_7TEEN_D
+   def_bool $(shields_list_contains,7teen_d)
+
+config SHIELD_7TEEN_A
+   def_bool $(shields_list_contains,7teen_a)

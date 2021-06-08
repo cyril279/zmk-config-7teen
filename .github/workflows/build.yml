@@ -34,7 +34,7 @@ jobs:
       - name: West Zephyr export
         run: west zephyr-export
       - name: West Build (7teen)
-        run: west build -s zmk/app -b seeeduino_xiao -- -DSHIELD=7teen -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
+        run: west build -s zmk/app -b seeeduino_xiao -- -DSHIELD=7teen_d -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
       - name: UF2 Build
         run: python3 ./tools/uf2/utils/uf2conv.py -c -f SAMD21 -o build/zephyr/zmk.uf2 build/zephyr/zmk.bin
       - name: 7teen DTS File
@@ -43,9 +43,25 @@ jobs:
       - name: 7teen Kconfig file
         run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
       - name: Rename zmk.uf2
-        run: cp build/zephyr/zmk.uf2 7teen.uf2
-      - name: Archive (7teen)
+        run: cp build/zephyr/zmk.uf2 7teen_d.uf2
+      - name: Archive (7teen back-right)
         uses: actions/upload-artifact@v2
         with:
           name: firmware
-          path: 7teen.uf2
+          path: 7teen_d.uf2
+      - name: West Build (7teen side-left)
+        run: west build -s zmk/app -b seeeduino_xiao -- -DSHIELD=7teen_a -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
+      - name: UF2 Build
+        run: python3 ./tools/uf2/utils/uf2conv.py -c -f SAMD21 -o build/zephyr/zmk.uf2 build/zephyr/zmk.bin
+      - name: 7teen DTS File
+        if: ${{ always() }}
+        run: cat -n build/zephyr/seeeduino_xiao.dts.pre.tmp
+      - name: 7teen Kconfig file
+        run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
+      - name: Rename zmk.uf2
+        run: cp build/zephyr/zmk.uf2 7teen_a.uf2
+      - name: Archive (7teen side-left)
+        uses: actions/upload-artifact@v2
+        with:
+          name: firmware
+          path: 7teen_a.uf2

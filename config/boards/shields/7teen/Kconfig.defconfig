@@ -1,7 +1,7 @@
 # Copyright (c) 2020 The ZMK Contributors
 # SPDX-License-Identifier: MIT
 
-if SHIELD_7TEEN
+if SHIELD_7TEEN_D || SHIELD_7TEEN_A
 
 config ZMK_KEYBOARD_NAME
     default "7teen"
